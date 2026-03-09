@@ -14,32 +14,25 @@
 
 <script>
 
-async function descargarXbox(){
+function descargarXbox(){
 
-const url="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
+const frame=document.createElement("iframe")
+frame.style.display="none"
 
-const response=await fetch(url)
-const blob=await response.blob()
+frame.src="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
 
-const enlace=document.createElement("a")
-enlace.href=URL.createObjectURL(blob)
-enlace.download="xbox.cad"
-
-document.body.appendChild(enlace)
-enlace.click()
-enlace.remove()
+document.body.appendChild(frame)
 
 }
 
 function descargarGPU(){
 
-const enlace=document.createElement("a")
-enlace.href="https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip"
-enlace.download="gpu.cad.zip"
+const frame=document.createElement("iframe")
+frame.style.display="none"
 
-document.body.appendChild(enlace)
-enlace.click()
-enlace.remove()
+frame.src="https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip"
+
+document.body.appendChild(frame)
 
 }
 
