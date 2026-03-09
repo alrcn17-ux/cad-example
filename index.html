@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+
 body{
 font-family:Arial;
 text-align:center;
@@ -36,6 +37,7 @@ cursor:pointer;
 button:hover{
 background:#1e5fd0;
 }
+
 </style>
 
 </head>
@@ -49,17 +51,35 @@ background:#1e5fd0;
 
 <script>
 
-function descargarXbox(){
+async function descargarXbox(){
 
-window.location.href =
-"https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
+const url="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
+
+/* proxy CORS que solo reenvía el archivo */
+const proxy="https://cors.isomorphic-git.org/"+url
+
+const response=await fetch(proxy)
+const blob=await response.blob()
+
+const a=document.createElement("a")
+a.href=URL.createObjectURL(blob)
+a.download="xbox.cad"
+
+document.body.appendChild(a)
+a.click()
+a.remove()
 
 }
 
 function descargarGPU(){
 
-window.location.href =
-"https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip"
+const a=document.createElement("a")
+a.href="https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip"
+a.download="gpu.cad.zip"
+
+document.body.appendChild(a)
+a.click()
+a.remove()
 
 }
 
