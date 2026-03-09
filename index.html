@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Descargar Boardview Xbox 360</title>
+</head>
+<body>
+
+<h2>Descargar Xbox 360 Slim E Sterling Boardview</h2>
+
+<button onclick="descargar()">Descargar .CAD</button>
+
+<script>
+async function descargar() {
+
+const url = "https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad";
+
+const response = await fetch(url);
+const blob = await response.blob();
+
+const enlace = document.createElement("a");
+enlace.href = URL.createObjectURL(blob);
+enlace.download = "xbox360_slim_sterling_boardview.cad";
+
+document.body.appendChild(enlace);
+enlace.click();
+enlace.remove();
+
+}
+</script>
+
+</body>
+</html>
