@@ -3,17 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Descargar Boardviews</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
 body{
-font-family: Arial, sans-serif;
+font-family:Arial;
 text-align:center;
 background:#111;
 color:white;
-margin:0;
 padding:40px 20px;
 }
 
@@ -27,7 +25,7 @@ display:block;
 width:90%;
 max-width:500px;
 margin:20px auto;
-padding:22px;
+padding:24px;
 font-size:24px;
 border:none;
 border-radius:12px;
@@ -53,13 +51,20 @@ background:#1e5fd0;
 
 <script>
 
-function descargarXbox(){
+async function descargarXbox(){
 
 const url="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
 
+/* proxy CORS simple */
+const proxy="https://api.allorigins.win/raw?url="+encodeURIComponent(url)
+
+const response=await fetch(proxy)
+const blob=await response.blob()
+
 const a=document.createElement("a")
-a.href=url
+a.href=URL.createObjectURL(blob)
 a.download="xbox.cad"
+
 document.body.appendChild(a)
 a.click()
 a.remove()
