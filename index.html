@@ -7,7 +7,7 @@
 
 <body>
 
-<h2>Descargar Xbox 360 Slim E Sterling Boardview</h2>
+<h2>Download .cad board example  / Descarga placa .cad de ejemplo</h2>
 
 <button onclick="descargar()">Descargar .CAD</button>
 
@@ -16,7 +16,7 @@ async function descargar() {
 
 const url = "https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad";
 
-const proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
+const proxy = "https://corsproxy.io/?" + encodeURIComponent(url);
 
 const response = await fetch(proxy);
 const blob = await response.blob();
