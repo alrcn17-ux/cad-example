@@ -18,10 +18,18 @@
 
 async function descargarXbox(){
 
+try{
+
 const url="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad";
-const proxy="https://corsproxy.io/?"+encodeURIComponent(url);
+
+const proxy="https://api.allorigins.win/raw?url="+encodeURIComponent(url);
 
 const response=await fetch(proxy);
+
+if(!response.ok){
+throw new Error("Error descargando archivo");
+}
+
 const blob=await response.blob();
 
 const enlace=document.createElement("a");
@@ -32,14 +40,27 @@ document.body.appendChild(enlace);
 enlace.click();
 enlace.remove();
 
+}catch(e){
+alert("Error descargando xbox.cad");
+console.error(e);
+}
+
 }
 
 async function descargarGPU(){
 
+try{
+
 const url="https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip";
-const proxy="https://corsproxy.io/?"+encodeURIComponent(url);
+
+const proxy="https://api.allorigins.win/raw?url="+encodeURIComponent(url);
 
 const response=await fetch(proxy);
+
+if(!response.ok){
+throw new Error("Error descargando ZIP");
+}
+
 const buffer=await response.arrayBuffer();
 
 const zip=await JSZip.loadAsync(buffer);
@@ -55,6 +76,11 @@ enlace.download="gpu.cad";
 document.body.appendChild(enlace);
 enlace.click();
 enlace.remove();
+
+}catch(e){
+alert("Error descargando gpu.cad");
+console.error(e);
+}
 
 }
 
