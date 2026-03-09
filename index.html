@@ -14,10 +14,15 @@
 
 <script>
 
-function descargarXbox(){
+async function descargarXbox(){
+
+const url="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
+
+const response=await fetch(url)
+const blob=await response.blob()
 
 const enlace=document.createElement("a")
-enlace.href="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
+enlace.href=URL.createObjectURL(blob)
 enlace.download="xbox.cad"
 
 document.body.appendChild(enlace)
@@ -28,12 +33,9 @@ enlace.remove()
 
 function descargarGPU(){
 
-const proxy="https://tu-proxy.com/unzipcad?url=" +
-encodeURIComponent("https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip")
-
 const enlace=document.createElement("a")
-enlace.href=proxy
-enlace.download="gpu.cad"
+enlace.href="https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip"
+enlace.download="gpu.cad.zip"
 
 document.body.appendChild(enlace)
 enlace.click()
