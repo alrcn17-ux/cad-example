@@ -12,68 +12,32 @@
 <button onclick="descargarXbox()">xbox.cad</button>
 <button onclick="descargarGPU()">gpu.cad</button>
 
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-
 <script>
 
-async function descargarXbox(){
-
-try{
-
-const url="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
-
-const response=await fetch(url)
-const blob=await response.blob()
+function descargarXbox(){
 
 const enlace=document.createElement("a")
-enlace.href=URL.createObjectURL(blob)
+enlace.href="https://ph.i2mx.com.mx/Documents/Schematics/Consolas/XBOX/Xbox%20360/04%20Xbox%20360%20Slim%20E%20Sterling%20Boardview.cad"
 enlace.download="xbox.cad"
 
 document.body.appendChild(enlace)
 enlace.click()
 enlace.remove()
 
-}catch(e){
-
-alert("Error descargando xbox.cad")
-console.error(e)
-
 }
 
-}
+function descargarGPU(){
 
-async function descargarGPU(){
-
-try{
-
-const url="https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip"
-
-/* proxy CORS que permite leer el zip */
-const proxy="https://cors.isomorphic-git.org/"+url
-
-const response=await fetch(proxy)
-const buffer=await response.arrayBuffer()
-
-const zip=await JSZip.loadAsync(buffer)
-
-const filename=Object.keys(zip.files)[0]
-
-const cad=await zip.files[filename].async("blob")
+const proxy="https://tu-proxy.com/unzipcad?url=" +
+encodeURIComponent("https://ph.i2mx.com.mx/Documents/Schematics/GPU/NVIDIA/MSI_RTX_2060_2070_TU106_MS-V379_Rev_7.0_BoardView.cad.zip")
 
 const enlace=document.createElement("a")
-enlace.href=URL.createObjectURL(cad)
+enlace.href=proxy
 enlace.download="gpu.cad"
 
 document.body.appendChild(enlace)
 enlace.click()
 enlace.remove()
-
-}catch(e){
-
-alert("Error descargando gpu.cad")
-console.error(e)
-
-}
 
 }
 
